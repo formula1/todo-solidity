@@ -1,0 +1,28 @@
+{
+  "name": "todo-dapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node ./tests"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "ethereumjs-testrpc": "^4.0.1",
+    "get-caller-file": "^1.0.2",
+    "jscs": "^3.0.7",
+    "lerna": "^2.0.0",
+    "solc": "^0.4.11",
+    "tap": "^10.7.0",
+    "web3": "^0.20.1",
+    "wtfnode": "^0.5.4"
+  },
+  "dependencies": {
+    "ethereumjs-vm": "^2.1.0"
+  }
+}
