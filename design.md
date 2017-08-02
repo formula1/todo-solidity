@@ -1,0 +1,74 @@
+To-do
+
+Database
+- Task
+  - Title
+- Bounty
+  - Creator
+  - Task: ID<Task>
+  - Amount
+- Solution
+  - Url: string
+  - Task: ID<Task>
+  - Acceptance
+  - Task: ID<Task>
+  - Solution: ID<Solution>
+- Cancel
+  - Type: enum<string>
+  - Target: ID<Any>
+
+Actions
+- Create a task
+  - Anybody can create
+- Cancel a task
+  - Only creator can cancel
+  - Cannot cancel a completed task
+  - Cannot cancel a cancelled task
+- Create a bounty
+  - Anybody can create
+  - Validate amount in wallet
+  - Task must not be cancelled
+- Cancel bounty
+  - Only owner can cancel
+  - cannot cancel a cancelled bounty
+  - Cannot cancel a bounty of a cancelled task
+  - Cannot cancel a bounty of a completed task
+- Create a solution
+  - Anybody can create
+  - Task must not be canceled
+  - Task must not have an accepted solution
+- Cancel a solution
+  - Only the creator can cancel a solution
+  - Cannot if solution already canceled
+  - Cannot if task already cancelled
+  - Cannot if any solution is already accepted
+- Accept a solution
+  - Only owner of task can accept
+  - Cannot if solution already canceled
+  - Cannot if an acceptance already exists
+  - Solution can only be accepted on uncanceled task
+  - Solution can only be accepted on a unaccepted task
+
+Ui
+- View list of tasks
+  - See num of solutions
+  - See it's been solved
+  - See if it's been cancelled
+  - See amount bounties
+  - See creator
+- View list of users
+  - See num solutions by user
+  - See num solutions cancelled
+  - See amount in bounties received
+  - See amount payedout
+  - See amount in bounties
+  - See bounties cancelled
+  - See tasks unsolved
+  - See tasks solved
+  - See tasks cancelled
+- Create task
+- Create solution
+  - Auto complete tasks
+- View task
+  - View list of solutions for task
+    - Accept one

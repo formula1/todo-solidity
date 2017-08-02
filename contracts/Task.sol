@@ -11,7 +11,8 @@ contract ToDoTask {
     uint public totalbounty = 0;
     address[] private funders;
     mapping (address => uint) private bounties;
-    mapping (bytes32 => Solution) private solutions;
+    bytes32[] public solutionIds;
+    mapping (bytes32 => Solution) public solutions;
     State public state = State.Open;
 
     enum State {
@@ -83,6 +84,7 @@ contract ToDoTask {
       } else {
         bountyWithdrew(msg.sender, amount);
         if (bounties[msg.sender] == 0) {
+          removeFunder(msg.sender);
           delete bounties[msg.sender];
         }
       }
@@ -97,7 +99,7 @@ contract ToDoTask {
       var solution_creator = msg.sender;
       var solution_id = sha3(solution_creator, url);
       assert(!solutionExists(solution_id));
-
+      solutionIds.push(solution_id);
       solutions[solution_id] = Solution({
         id: solution_id,
         creator: solution_creator,
@@ -114,6 +116,7 @@ contract ToDoTask {
       assert(solutionExists(solution_id));
       assert(solutions[solution_id].creator == msg.sender);
       delete solutions[solution_id];
+      removeSolution(solution_id);
       return solution_id;
     }
 
@@ -157,5 +160,42 @@ contract ToDoTask {
     function solutionExists(bytes32 solution_id) constant returns (bool){
       return solutions[solution_id].id == solution_id;
     }
+
+    function removeFunder(address funder) {
+      bool found = false;
+      for (uint i = 0; i<funders.length-1; i++){
+          if(found) funders[i] = funders[i+1];
+          else {
+            if(funders[i] == funder){
+              found = true;
+              funders[i] = funders[i+1];
+            }
+          }
+      }
+      if(!found) return;
+      delete funders[funders.length-1];
+      funders.length--;
+  }
+
+  function removeSolution(bytes32 solutionId) {
+    bool found = false;
+    for (uint i = 0; i<solutionIds.length-1; i++){
+        if(found) solutionIds[i] = solutionIds[i+1];
+        else {
+          if(solutionIds[i] == solutionId){
+            found = true;
+            solutionIds[i] = solutionIds[i+1];
+          }
+        }
+    }
+    if(!found) return;
+    delete solutionIds[solutionIds.length-1];
+    solutionIds.length--;
+  }
+
+
+  function solutionCount() constant returns(uint){
+    return solutionIds.length;
+  }
 
 }

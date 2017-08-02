@@ -23,6 +23,13 @@
     "wtfnode": "^0.5.4"
   },
   "dependencies": {
-    "ethereumjs-vm": "^2.1.0"
+    "eslint-plugin-react": "^7.1.0",
+    "ethereumjs-vm": "^2.1.0",
+    "history": "^4.6.3",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2",
+    "redux-history": "^1.0.2",
+    "web3-provider-engine": "^13.2.9",
+    "web3-redux": "^0.5.1"
   }
 }

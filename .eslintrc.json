@@ -1,6 +1,6 @@
 {
   "env": {},
-  "plugins": [],
+  "plugins": ["react"],
   "extends": [
     "eslint:recommended"
   ],
@@ -30,6 +30,9 @@
   "rules": {
     "no-use-before-define": [2, { "functions": false }],
     "no-mixed-spaces-and-tabs": 0,
+    "no-console": 0,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
     "no-console": 0
-  }
+    }
 }
